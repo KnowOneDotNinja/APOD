@@ -1,5 +1,6 @@
 package ninja.knowone.apod
 
+import android.app.Activity
 import android.os.AsyncTask
 import android.support.annotation.MainThread
 import android.widget.TextView
@@ -7,11 +8,10 @@ import android.widget.Toast
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
-import kotlin.contracts.Returns
 
-class CallingNasa() {
+class CallingNasa(private val activity: Activity) {
 
-    fun picSnag(returns: String) {
+    fun picSnag(addyPasser: (String) -> Unit): String {
         val client = OkHttpClient()
         val url = "https://api.nasa.gov/planetary/apod?api_key=${R.string.api_key}&hd=true"
         val request: Request = Request.Builder().url(url).build()
@@ -24,14 +24,15 @@ class CallingNasa() {
                 activity.runOnUiThread {
                     //val myText= response.body().toString()
                     val myThing = JSONObject(response.body().toString())
-                    var addy = myThing.getString("hdurl")
+                    val addy = myThing.getString("hdurl")
+                    addyPasser(addy)
                 }
             } else {
                 Toast.makeText(activity, "Response Unsuccessful", Toast.LENGTH_LONG).show()
             }
         }
 
-        val myThing: JSONObject =
+        //val myThing: JSONObject =
 
     }
 }

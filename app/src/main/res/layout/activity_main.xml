@@ -7,9 +7,8 @@
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="474dp" app:srcCompat="@android:color/darker_gray"
-            android:id="@+id/ivMain"/>
+            android:id="@+id/ivMain" android:contentDescription="@string/ivMain_content_description"/>
     <TextView
-            android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="117dp" android:id="@+id/tvMain" android:textColor="#03A9F4"/>
+            android:layout_height="match_parent" android:id="@+id/tvMain" android:textColor="#03A9F4"/>
 </LinearLayout>

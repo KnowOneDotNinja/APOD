@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">APOD</string>
     <string name="api_key">nXAdbAAnVBk5dg54Nm430y8Pyw3GIbvYlMRNqy19</string>
+    <string name="ivMain_content_description">Photo info</string>
 </resources>

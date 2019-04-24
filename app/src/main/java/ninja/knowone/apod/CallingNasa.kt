@@ -6,7 +6,6 @@ import android.widget.Toast
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
-import java.lang.Exception
 
 class CallingNasa(private val activity: Activity) {
 
@@ -21,12 +20,11 @@ class CallingNasa(private val activity: Activity) {
 
             if (response.isSuccessful) {
                 val myThing = JSONObject(response.body()?.string())
-                //val addy = myThing.getString("hdurl")
                 activity.runOnUiThread {
                         filePasser(myThing)
                 }
             } else {
-                activity.runOnUiThread() {
+                activity.runOnUiThread {
                     Toast.makeText(activity, "Response Unsuccessful", Toast.LENGTH_LONG).show()
                 }
             }

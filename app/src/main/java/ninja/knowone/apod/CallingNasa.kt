@@ -10,7 +10,7 @@ import java.lang.Exception
 
 class CallingNasa(private val activity: Activity) {
 
-    fun picSnag(addyPasser: (String) -> Unit) {
+    fun picSnag(filePasser: (JSONObject) -> Unit) {
         val client = OkHttpClient()
         val url = "https://api.nasa.gov/planetary/apod?api_key=${activity.getString(R.string.api_key)}&hd=true"
         val request: Request = Request.Builder().url(url).build()
@@ -21,9 +21,9 @@ class CallingNasa(private val activity: Activity) {
 
             if (response.isSuccessful) {
                 val myThing = JSONObject(response.body()?.string())
-                val addy = myThing.getString("hdurl")
+                //val addy = myThing.getString("hdurl")
                 activity.runOnUiThread {
-                        addyPasser(addy)
+                        filePasser(myThing)
                 }
             } else {
                 activity.runOnUiThread() {

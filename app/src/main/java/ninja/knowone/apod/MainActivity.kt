@@ -12,9 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //val addy: String = CallingNasa.
+
         try {
-            CallingNasa(this).picSnag { addy ->
-                Glide.with(this).load(addy).into(ivMain)
+            CallingNasa(this).picSnag { myThing ->
+                Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
+                tvMain.text = myThing.getString("explanation")
             }
         } catch (e:Exception) {e.printStackTrace()}
     }

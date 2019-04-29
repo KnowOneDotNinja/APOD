@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/linearLayout"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical" android:background="#000000">
-    <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="474dp" app:srcCompat="@android:color/darker_gray"
-            android:id="@+id/ivMain" android:contentDescription="@string/ivMain_content_description"/>
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/tvMain" android:textColor="#03A9F4"/>
+              android:orientation="vertical"
+              android:background="#000000">
+
+    <fragment android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/apod_fragment"
+              android:name="ninja.knowone.apod.APODMainFragment"/>
+
 </LinearLayout>

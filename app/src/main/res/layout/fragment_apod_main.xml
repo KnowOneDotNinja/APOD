@@ -11,7 +11,8 @@
             android:layout_height="402dp"
             app:srcCompat="@android:drawable/ic_delete"
             android:id="@+id/ivMain"
-            android:contentDescription="@string/ivMain_content_description" android:scaleType="center"/>
+            android:contentDescription="@string/ivMain_content_description"
+            android:scaleType="centerInside"/>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

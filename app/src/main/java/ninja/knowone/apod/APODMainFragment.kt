@@ -21,7 +21,7 @@ class APODMainFragment: Fragment() {
             CallingNasa(requireActivity()).picSnag { myThing ->
                 if (myThing.has("hdurl")) {
                     Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
-                } else Glide.with(this).load(context?.getDrawable(android.R.drawable.ic_menu_close_clear_cancel)).into(ivMain)
+                } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
                 if (myThing.has("explanation")) {
                     tvMain.text = myThing.getString("explanation")
                 } else {

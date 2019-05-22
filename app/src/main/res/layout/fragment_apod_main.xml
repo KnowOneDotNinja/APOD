@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvMain"
                 android:textColor="#03A9F4"
-                android:background="@drawable/border" android:padding="5pt"/>
+                android:background="@drawable/border"
+                android:padding="5pt"/>
     </ScrollView>
 
 </LinearLayout>

@@ -9,7 +9,7 @@
     <com.ortiz.touchview.TouchImageView
             android:layout_width="match_parent"
             android:layout_height="402dp"
-            app:srcCompat="@android:drawable/ic_delete"
+            app:srcCompat="@drawable/no_vid"
             android:id="@+id/ivMain"
             android:contentDescription="@string/ivMain_content_description"
             android:scaleType="centerInside"/>
@@ -20,7 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvMain"
-                android:textColor="#03A9F4"/>
+                android:textColor="#03A9F4"
+                android:background="@drawable/border" android:padding="5pt"/>
     </ScrollView>
 
 </LinearLayout>

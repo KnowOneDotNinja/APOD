@@ -3,4 +3,5 @@
     <string name="api_key">nXAdbAAnVBk5dg54Nm430y8Pyw3GIbvYlMRNqy19</string>
     <string name="ivMain_content_description">Photo info</string>
     <string name="no_explanation">No description available</string>
+    <string name="button_text">Choose date for APOD</string>
 </resources>

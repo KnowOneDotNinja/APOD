@@ -24,10 +24,14 @@ class APODMainFragment: Fragment() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener { view, year, dayOfMonth, monthOfYear ->
-            Toast.makeText(activity, "You chose ${dayOfMonth + 1}-$monthOfYear-$year", Toast.LENGTH_LONG).show()
-            //val url = "https://api.nasa.gov/planetary/apod?api_key0=${activity?.getString(R.string.api_key)}&hd=true&date=$year-$monthOfYear-$dayOfMonth"
+        val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
+                view,
+                year,
+                dayOfMonth,
+                monthOfYear -> Toast.makeText(activity, "You chose ${dayOfMonth + 1}-$monthOfYear-$year", Toast.LENGTH_LONG).show()
         }, year, month, day)
+        dpd.datePicker.maxDate = System.currentTimeMillis()
+        //dpd.datePicker.minDate =
         dpd.show()
     }
 

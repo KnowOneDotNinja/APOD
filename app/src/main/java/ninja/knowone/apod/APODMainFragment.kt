@@ -40,6 +40,7 @@ class APODMainFragment: Fragment() {
             try {
                 CallingNasa(requireActivity()).picSnag { myThing ->
                     if (myThing.has("hdurl")) {
+                        Glide.with(this).load(myThing.getString("url")).into(ivMain)
                         Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
                     } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
                     if (myThing.has("explanation")) {

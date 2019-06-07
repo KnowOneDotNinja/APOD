@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_apod_main.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class APODMainFragment: Fragment() {
@@ -23,6 +24,9 @@ class APODMainFragment: Fragment() {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
+        val formatter = SimpleDateFormat("yyyy/MM/dd")
+        val min = formatter.parse("1995/06/16")
+        val minLong = min.time
 
         val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
                 view,
@@ -31,7 +35,7 @@ class APODMainFragment: Fragment() {
                 monthOfYear -> Toast.makeText(activity, "You chose ${dayOfMonth + 1}-$monthOfYear-$year", Toast.LENGTH_LONG).show()
         }, year, month, day)
         dpd.datePicker.maxDate = System.currentTimeMillis()
-        //dpd.datePicker.minDate =
+        dpd.datePicker.minDate = minLong
         dpd.show()
     }
 

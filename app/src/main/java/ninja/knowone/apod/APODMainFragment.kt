@@ -32,7 +32,7 @@ class APODMainFragment: Fragment() {
                 view,
                 year,
                 dayOfMonth,
-                monthOfYear -> Toast.makeText(activity, "You chose ${dayOfMonth + 1}-$monthOfYear-$year", Toast.LENGTH_LONG).show()
+                monthOfYear -> Toast.makeText(activity, "You chose $year-${monthOfYear + 1}-$dayOfMonth", Toast.LENGTH_LONG).show()
         }, year, month, day)
         dpd.datePicker.maxDate = System.currentTimeMillis()
         dpd.datePicker.minDate = minLong

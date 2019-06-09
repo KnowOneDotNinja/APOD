@@ -40,24 +40,9 @@ class APODMainFragment: Fragment() {
     }
 
     override fun onAttach(context: Context?) {
-
-            try {
-                CallingNasa(requireActivity()).picSnag { myThing ->
-                    if (myThing.has("hdurl")) {
-                        Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
-                    } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
-                    if (myThing.has("explanation")) {
-                        tvMain.text = myThing.getString("explanation")
-                    } else {
-                        tvMain.text = R.string.no_explanation.toString()
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            super.onAttach(context)
-        }
+        super.onAttach(context)
+        setTheUi()
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -65,4 +50,18 @@ class APODMainFragment: Fragment() {
             clickApodDate()
         }
     }
+
+    private fun setTheUi(date: String = "") {
+        CallingNasa(requireActivity()).picSnag { myThing ->
+            if (myThing.has("hdurl")) {
+                Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
+            } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
+            if (myThing.has("explanation")) {
+                tvMain.text = myThing.getString("explanation")
+            } else {
+                tvMain.text = R.string.no_explanation.toString()
+            }
+        }
     }
+
+}

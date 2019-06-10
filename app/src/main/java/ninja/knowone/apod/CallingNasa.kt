@@ -13,11 +13,10 @@ class CallingNasa(private val activity: Activity) {
      fun picSnag(date:String = "", filePasser: (JSONObject) -> Unit) {
         val client = OkHttpClient()
         var url = "https://api.nasa.gov/planetary/apod?api_key=${activity.getString(R.string.api_key)}&hd=true"
-        val request: Request = Request.Builder().url(url).build()
-
          if (!date.isBlank()) {
-           url += "?&date=$date"
+             url += "&date=$date"
          }
+        val request: Request = Request.Builder().url(url).build()
 
         AsyncTask.execute {
 

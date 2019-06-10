@@ -32,7 +32,7 @@ class APODMainFragment: Fragment() {
                 view,
                 year,
                 dayOfMonth,
-                monthOfYear -> Toast.makeText(activity, "You chose $year-${monthOfYear + 1}-$dayOfMonth", Toast.LENGTH_LONG).show()
+                monthOfYear -> setTheUi("$year-${monthOfYear + 1}-$dayOfMonth")
         }, year, month, day)
         dpd.datePicker.maxDate = System.currentTimeMillis()
         dpd.datePicker.minDate = minLong
@@ -52,7 +52,7 @@ class APODMainFragment: Fragment() {
     }
 
     private fun setTheUi(date: String = "") {
-        CallingNasa(requireActivity()).picSnag { myThing ->
+        CallingNasa(requireActivity()).picSnag(date) { myThing ->
             if (myThing.has("hdurl")) {
                 Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
             } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)

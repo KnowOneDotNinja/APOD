@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+              xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/linearLayout"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:background="#000000">
+    <Button
+            android:text="@string/button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCal"
+            android:background="#75444444"
+            android:textColor="@color/border_color"
+            android:textAlignment="center"
+            android:textStyle="italic"/>
     <com.ortiz.touchview.TouchImageView
             android:layout_width="match_parent"
             android:layout_height="402dp"
-            app:srcCompat="@android:drawable/ic_delete"
+            app:srcCompat="@drawable/no_vid"
             android:id="@+id/ivMain"
             android:contentDescription="@string/ivMain_content_description"
             android:scaleType="centerInside"/>
@@ -20,7 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvMain"
-                android:textColor="#03A9F4"/>
+                android:textColor="#03A9F4"
+                android:background="@drawable/border"
+                android:padding="5pt"/>
     </ScrollView>
 
 </LinearLayout>

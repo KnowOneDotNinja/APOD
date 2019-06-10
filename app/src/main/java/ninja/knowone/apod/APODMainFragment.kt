@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_apod_main.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class APODMainFragment: Fragment() {
@@ -23,11 +24,18 @@ class APODMainFragment: Fragment() {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
+        val formatter = SimpleDateFormat("yyyy/MM/dd")
+        val min = formatter.parse("1995/06/16")
+        val minLong = min.time
 
-        val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener { view, year, dayOfMonth, monthOfYear ->
-            Toast.makeText(activity, "You chose ${dayOfMonth + 1}-$monthOfYear-$year", Toast.LENGTH_LONG).show()
-            //val url = "https://api.nasa.gov/planetary/apod?api_key0=${activity?.getString(R.string.api_key)}&hd=true&date=$year-$monthOfYear-$dayOfMonth"
+        val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
+                view,
+                year,
+                dayOfMonth,
+                monthOfYear -> Toast.makeText(activity, "You chose ${dayOfMonth + 1}-$monthOfYear-$year", Toast.LENGTH_LONG).show()
         }, year, month, day)
+        dpd.datePicker.maxDate = System.currentTimeMillis()
+        dpd.datePicker.minDate = minLong
         dpd.show()
     }
 
@@ -36,6 +44,7 @@ class APODMainFragment: Fragment() {
             try {
                 CallingNasa(requireActivity()).picSnag { myThing ->
                     if (myThing.has("hdurl")) {
+                        Glide.with(this).load(myThing.getString("url")).into(ivMain)
                         Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
                     } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
                     if (myThing.has("explanation")) {

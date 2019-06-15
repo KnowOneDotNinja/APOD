@@ -2,28 +2,17 @@ package ninja.knowone.apod
 
 import android.app.DatePickerDialog
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.fragment_apod_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class APODMainFragment: Fragment() {
-
-    lateinit var exoPlayer: ExoPlayer
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_apod_main, container, false)
@@ -59,17 +48,20 @@ class APODMainFragment: Fragment() {
         btnCal.setOnClickListener {
             clickApodDate()
         }
-        initializePlayer()
     }
 
     private fun setTheUi(date: String = "") {
         CallingNasa(requireActivity()).picSnag(date) { myThing ->
-            if (myThing.has("hdurl")) {
-                Glide.with(this).load(myThing.getString("url")).into(ivMain)
-                Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
-            } else if(myThing.get("media_type") == "video") {
-                playVideo(myThing.getString("url"))
-            } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
+            when {
+                myThing.has("hdurl") -> {
+                    Glide.with(this).load(myThing.getString("url")).into(ivMain)
+                    Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
+                }
+                myThing.get("media_type") == "video" -> {
+                    // Do thing with video
+                }
+                else -> Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
+            }
             if (myThing.has("explanation")) {
                 tvMain.text = myThing.getString("explanation")
             } else {
@@ -77,30 +69,4 @@ class APODMainFragment: Fragment() {
             }
         }
     }
-
-    private fun initializePlayer() {
-
-        val trackSelector = DefaultTrackSelector()
-        val loadControl = DefaultLoadControl()
-        val renderersFactory = DefaultRenderersFactory(context)
-
-        exoPlayer = ExoPlayerFactory.newSimpleInstance( requireContext(),
-            renderersFactory, trackSelector, loadControl)
-    }
-
-
-    fun playVideo(url: String) {
-
-        context?.let {
-            val userAgent = Util.getUserAgent(it, it.getString(R.string.app_name))
-            val mediaSource = ProgressiveMediaSource
-                .Factory(DefaultDataSourceFactory(it, userAgent))
-                .createMediaSource(Uri.parse(url))
-            exoPlayer.prepare(mediaSource)
-            exoPlayer.playWhenReady = true
-        }
-
-    }
-
-
 }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.DefaultLoadControl
@@ -68,7 +69,8 @@ class APODMainFragment: Fragment() {
                 Glide.with(this).load(myThing.getString("url")).into(ivMain)
                 Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
             } else if(myThing.get("media_type") == "video") {
-                playVideo(myThing.getString("url"))
+                playerView.visibility = VISIBLE
+                playVideo(myThing.getString("url"), playerView)
             } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
             if (myThing.has("explanation")) {
                 tvMain.text = myThing.getString("explanation")
@@ -89,7 +91,7 @@ class APODMainFragment: Fragment() {
     }
 
 
-    fun playVideo(url: String) {
+    fun playVideo(url: String, view: View) {
 
         context?.let {
             val userAgent = Util.getUserAgent(it, it.getString(R.string.app_name))
@@ -101,6 +103,5 @@ class APODMainFragment: Fragment() {
         }
 
     }
-
 
 }

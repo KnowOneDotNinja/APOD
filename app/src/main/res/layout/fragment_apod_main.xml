@@ -16,6 +16,13 @@
             android:textColor="@color/border_color"
             android:textAlignment="center"
             android:textStyle="italic"/>
+
+    <com.google.android.exoplayer2.ui.PlayerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/playerView"/>
+
     <com.ortiz.touchview.TouchImageView
             android:layout_width="match_parent"
             android:layout_height="402dp"

@@ -31,8 +31,8 @@ class APODMainFragment: Fragment() {
         val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
                 view,
                 year,
-                dayOfMonth,
-                monthOfYear -> setTheUi("$year-${monthOfYear + 1}-$dayOfMonth")
+                monthOfYear,
+                dayOfMonth-> setTheUi("$year-${monthOfYear + 1}-$dayOfMonth")
         }, year, month, day)
         dpd.datePicker.maxDate = System.currentTimeMillis()
         dpd.datePicker.minDate = minLong
@@ -53,9 +53,16 @@ class APODMainFragment: Fragment() {
 
     private fun setTheUi(date: String = "") {
         CallingNasa(requireActivity()).picSnag(date) { myThing ->
-            if (myThing.has("hdurl")) {
-                Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
-            } else Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
+            when {
+                myThing.has("hdurl") -> {
+                    Glide.with(this).load(myThing.getString("url")).into(ivMain)
+                    Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
+                }
+                myThing.get("media_type") == "video" -> {
+                    Toast.makeText(activity, "Video is not supported :(", Toast.LENGTH_LONG).show()
+                }
+                else -> Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
+            }
             if (myThing.has("explanation")) {
                 tvMain.text = myThing.getString("explanation")
             } else {
@@ -63,5 +70,4 @@ class APODMainFragment: Fragment() {
             }
         }
     }
-
 }

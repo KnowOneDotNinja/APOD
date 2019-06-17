@@ -15,10 +15,10 @@ import android.app.DatePickerDialog.OnDateSetListener as OnDateSetListener1
 
 class CallingNasa(private val activity: Activity) {
 
-    private fun hasNetwork(): Boolean {
+    private fun hasNetwork(): Boolean? {
         val connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
-        return activeNetwork?.isConnectedOrConnecting == true
+        return activeNetwork?.isConnectedOrConnecting
     }
 
 

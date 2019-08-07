@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.fragment_apod_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
-import android.app.DatePickerDialog.OnDateSetListener as OnDateSetListener1
 
 class CallingNasa(private val activity: Activity) {
 
@@ -25,7 +24,7 @@ class CallingNasa(private val activity: Activity) {
      fun picSnag(date:String = "", filePasser: (JSONObject) -> Unit) {
          if(hasNetwork() == true) {
             val client = OkHttpClient()
-            var url = "https://api.nasa.gov/planetary/apod?api_key=${activity.getString(R.string.api_key)}&hd=true"
+            var url = "https://api.nasa.gov/planetary/apod?api_key=${activity.getString(R.string.api_key)}"
             if (!date.isBlank()) {
              url += "&date=$date"
             }

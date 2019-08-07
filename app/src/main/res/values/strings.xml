@@ -3,7 +3,7 @@
     <string name="api_key">nXAdbAAnVBk5dg54Nm430y8Pyw3GIbvYlMRNqy19</string>
     <string name="ivMain_content_description">Photo info</string>
     <string name="no_explanation">No description available</string>
-    <string name="button_text">Choose date for APOD</string>
+    <string name="button_text">Tap here to select new date</string>
     <string name="no_network">There was a problem connecting. This is a common occurrence between 9:00–10:00pm. We
         apologize for the interruption :(</string>
 </resources>

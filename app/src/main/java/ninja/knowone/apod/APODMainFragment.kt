@@ -19,25 +19,7 @@ class APODMainFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_apod_main, container, false)
     }
 
-    private fun clickApodDate() {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val formatter = SimpleDateFormat("yyyy/MM/dd")
-        val min = formatter.parse("1995/06/16")
-        val minLong = min.time
 
-        val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
-                view,
-                year,
-                monthOfYear,
-                dayOfMonth-> setTheUi("$year-${monthOfYear + 1}-$dayOfMonth")
-        }, year, month, day)
-        dpd.datePicker.maxDate = System.currentTimeMillis()
-        dpd.datePicker.minDate = minLong
-        dpd.show()
-    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -56,7 +38,6 @@ class APODMainFragment: Fragment() {
             when {
                 myThing.has("hdurl") -> {
                     Glide.with(this).load(myThing.getString("url")).into(ivMain)
-                    Glide.with(this).load(myThing.getString("hdurl")).into(ivMain)
                 }
                 myThing.get("media_type") == "video" -> {
                     Toast.makeText(activity, "Video is not supported :(", Toast.LENGTH_LONG).show()
@@ -69,5 +50,25 @@ class APODMainFragment: Fragment() {
                 tvMain.text = R.string.no_explanation.toString()
             }
         }
+    }
+
+    private fun clickApodDate() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val formatter = SimpleDateFormat("yyyy/MM/dd")
+        val min = formatter.parse("1995/06/16")
+        val minLong = min.time
+
+        val dpd = DatePickerDialog(activity, R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
+                view,
+                year,
+                monthOfYear,
+                dayOfMonth-> setTheUi("$year-${monthOfYear + 1}-$dayOfMonth")
+        }, year, month, day)
+        dpd.datePicker.maxDate = System.currentTimeMillis()
+        dpd.datePicker.minDate = minLong
+        dpd.show()
     }
 }

@@ -21,8 +21,8 @@ class APODMainFragment: Fragment() {
 
 
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onAttach(context: Context) {
+        context.let { super.onAttach(it) }
         setTheUi()
     }
 
@@ -40,6 +40,7 @@ class APODMainFragment: Fragment() {
                     Glide.with(this).load(myThing.getString("url")).into(ivMain)
                 }
                 myThing.get("media_type") == "video" -> {
+                    Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)
                     Toast.makeText(activity, "Video is not supported :(", Toast.LENGTH_LONG).show()
                 }
                 else -> Glide.with(this).load(context?.getDrawable(R.drawable.no_vid)).into(ivMain)

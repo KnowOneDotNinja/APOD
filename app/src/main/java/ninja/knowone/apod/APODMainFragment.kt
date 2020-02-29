@@ -19,8 +19,6 @@ class APODMainFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_apod_main, container, false)
     }
 
-
-
     override fun onAttach(context: Context) {
         context.let { super.onAttach(it) }
         setTheUi()

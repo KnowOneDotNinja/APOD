@@ -7,7 +7,7 @@ import android.os.Handler
 
 class SplashActivity: AppCompatActivity() {
 
-    private val splashTime = 3000L
+    private val splashTime = 2500L
     private lateinit var myHandler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class SplashActivity: AppCompatActivity() {
 
     private fun goToMainFragment() {
 
-        val mainFragmentIntent = Intent(applicationContext, APODMainFragment::class.java)
+        val mainFragmentIntent = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainFragmentIntent)
         finish()
     }

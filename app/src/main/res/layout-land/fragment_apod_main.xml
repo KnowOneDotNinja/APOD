@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnCal"
             android:background="#75444444"
-            android:textColor="@color/border_color"
+            android:textColor="@color/colorBorder"
             android:textAlignment="center"
             android:textStyle="italic"/>
 

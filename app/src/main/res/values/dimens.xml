@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_title_margin">28dp</dimen>
+    <dimen name="splash_title_font_size_back">100sp</dimen>
+    <dimen name="splash_title_font_size_front">110sp</dimen>
+    <dimen name="description_text_padding">5pt</dimen>
+    <dimen name="image_view_height">402dp</dimen>
+</resources>

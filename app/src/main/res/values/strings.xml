@@ -6,4 +6,8 @@
     <string name="button_text">Tap here to select new date</string>
     <string name="no_network">There was a problem connecting. This is a common occurrence between 9:00–10:00pm. We
         apologize for the interruption :(</string>
+    <string name="splash_screen_background">Splash screen background</string>
+    <string name="splash_title_text">APOD</string>
+    <string name="splash_title_font_back">sans-serif-medium</string>
+    <string name="splash_title_font_front">sans-serif-medium</string>
 </resources>

@@ -10,8 +10,8 @@ android {
         applicationId "ninja.knowone.apod"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.6"
+        versionCode 4
+        versionName "1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
